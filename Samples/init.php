@@ -13,6 +13,7 @@ require '../vendor/autoload.php';
 $options = new \Fhp\Options\FinTsOptions();
 $options->url = ''; // HBCI / FinTS Url can be found here: https://www.hbci-zka.de/institute/institut_auswahl.htm (use the PIN/TAN URL)
 $options->bankCode = ''; // Your bank code / Bankleitzahl
+$options->bic = ''; // Your business identifier code (BIC)
 $options->productName = ''; // The number you receive after registration / FinTS-Registrierungsnummer
 $options->productVersion = '1.0'; // Your own Software product version
 $credentials = \Fhp\Options\Credentials::create('username', 'pin'); // This is NOT the PIN of your bank card!
