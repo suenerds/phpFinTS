@@ -247,7 +247,7 @@ class FinTs
         $this->requireTanMode();
         $this->ensureSynchronized();
         $this->messageNumber = 1;
-        
+
         return new DialogInitialization($this->options, $this->requireCredentials(), $this->getSelectedTanMode(),
             $this->selectedTanMedium, $this->kundensystemId);
     }
@@ -265,9 +265,9 @@ class FinTs
     public function login(): DialogInitialization
     {
         $login = $this->createLoginAction();
-        
+
         $this->execute($login);
-        
+
         return $login;
     }
 
@@ -518,6 +518,11 @@ class FinTs
     public function forgetDialog()
     {
         $this->dialogId = null;
+    }
+
+    public function getAccounts()
+    {
+        return $this->upd->getAccounts($this->options->bic);
     }
 
     /**
