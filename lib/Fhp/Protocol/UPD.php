@@ -31,6 +31,7 @@ class UPD
             $account = new SEPAAccount();
             $account->setIban($hiupd->iban);
             $account->setBic($bic);
+            $account->setName($hiupd->kontoproduktbezeichnung);
             $account->setAccountNumber($hiupd->kontoverbindung->kontonummer);
             $account->setSubAccount($hiupd->kontoverbindung->unterkontomerkmal);
             $account->setBlz($hiupd->kontoverbindung->kik->kreditinstitutscode);

@@ -8,7 +8,6 @@ namespace Fhp\Model;
 class SEPAAccount
 {
     // All fields are nullable, but the overall SEPAAccount is only valid if at least {IBAN,BIC} or {accountNumber,blz} are present.
-
     /** @var string|null */
     protected $iban;
     /** @var string|null */
@@ -19,6 +18,8 @@ class SEPAAccount
     protected $subAccount;
     /** @var string|null */
     protected $blz;
+    /** @var string|null */
+    protected $name;
 
     public function getIban(): ?string
     {
@@ -91,6 +92,21 @@ class SEPAAccount
     public function setBlz(?string $blz)
     {
         $this->blz = $blz;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setName(?string $name)
+    {
+        $this->name = $name;
 
         return $this;
     }
