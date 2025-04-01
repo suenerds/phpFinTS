@@ -66,9 +66,7 @@ if (isset($request->action)) {
                     return ['result' => 'ongoing'];
                 }
             case 'getBalances':
-                $getAccounts = \Fhp\Action\GetSEPAAccounts::create();
-                $fints->execute($getAccounts); // We assume that needsTan() is always false here.
-                $getBalances = \Fhp\Action\GetBalance::create($getAccounts->getAccounts()[0], true);
+                $getBalances = \Fhp\Action\GetBalance::create($fints->getAccounts()[0], true);
                 $fints->execute($getBalances); // We assume that needsTan() is always false here.
                 $balances = [];
                 foreach ($getBalances->getBalances() as $balance) {

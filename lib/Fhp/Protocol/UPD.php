@@ -23,6 +23,21 @@ class UPD
         return $this->hiupa->updVersion;
     }
 
+
+    public function getAccounts(string $bic)
+    {
+        return array_map(function ($hiupd) use ($bic){
+            /** @var Ktz $ktz */
+            $account = new SEPAAccount();
+            $account->setIban($hiupd->iban);
+            $account->setBic($bic);
+            $account->setName($hiupd->kontoproduktbezeichnung);
+            $account->setAccountNumber($hiupd->kontoverbindung->kontonummer);
+            $account->setSubAccount($hiupd->kontoverbindung->unterkontomerkmal);
+            $account->setBlz($hiupd->kontoverbindung->kik->kreditinstitutscode);
+            return $account;
+        }, $this->hiupd);
+    }
     /**
      * @param Message $response A dialog initialization response from the server.
      * @return bool True if the UPD data is contained in the response and {@link extractFromResponse()} would

@@ -33,6 +33,13 @@ class FinTsOptions
     public $bankCode;
 
     /**
+     * The business identifier code (BIC) of the bank. Note that this library uses a fixed country code of 280, i.e. it only
+     * works with German banks.
+     * @var string
+     */
+    public ?string $bic = null;
+
+    /**
      * The URL where the bank server can be reached. Should be HTTPS, otherwise the traffic is not encrypted. May
      * include a port number.
      * Example: "https://my-bank.de/fints".

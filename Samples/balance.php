@@ -8,14 +8,7 @@
 /** @var \Fhp\FinTs $fints */
 $fints = require_once 'login.php';
 
-// Just pick the first account for the request, though we will request the balance of all accounts.
-$getSepaAccounts = \Fhp\Action\GetSEPAAccounts::create();
-$fints->execute($getSepaAccounts);
-if ($getSepaAccounts->needsTan()) {
-    handleStrongAuthentication($getSepaAccounts); // See login.php for the implementation.
-}
-$oneAccount = $getSepaAccounts->getAccounts()[0];
-
+$oneAccount = $fints->getAccounts()[0];
 $getBalance = \Fhp\Action\GetBalance::create($oneAccount, true);
 $fints->execute($getBalance);
 if ($getBalance->needsTan()) {
