@@ -244,6 +244,10 @@ class FinTs
 
     public function createLoginAction(): DialogInitialization
     {
+        $this->requireTanMode();
+        $this->ensureSynchronized();
+        $this->messageNumber = 1;
+        
         return new DialogInitialization($this->options, $this->requireCredentials(), $this->getSelectedTanMode(),
             $this->selectedTanMedium, $this->kundensystemId);
     }
@@ -282,12 +286,6 @@ class FinTs
      */
     public function execute(BaseAction $action)
     {
-        if($action instanceof DialogInitialization) {
-            $this->requireTanMode();
-            $this->ensureSynchronized();
-            $this->messageNumber = 1;
-        }
-        
         if ($this->dialogId === null && !($action instanceof DialogInitialization)) {
             throw new \RuntimeException('Need to login (DialogInitialization) before executing other actions');
         }
